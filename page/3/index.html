@@ -157,6 +157,193 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/14/%E8%80%83%E7%A0%94%E5%A4%8D%E8%AF%95/%E6%9C%BA%E8%AF%95/%E6%9C%80%E5%A4%A7%E5%AD%90%E4%B8%B2%E5%92%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar01.JPG">
+      <meta itemprop="name" content="Ni256o">
+      <meta itemprop="description" content="The sole certainty is that tomorrow will surprise us all.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="256's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/03/14/%E8%80%83%E7%A0%94%E5%A4%8D%E8%AF%95/%E6%9C%BA%E8%AF%95/%E6%9C%80%E5%A4%A7%E5%AD%90%E4%B8%B2%E5%92%8C/" class="post-title-link" itemprop="url">「最大子串和」</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-14 15:29:12" itemprop="dateCreated datePublished" datetime="2022-03-14T15:29:12+08:00">2022-03-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-04-04 15:42:03" itemprop="dateModified" datetime="2022-04-04T15:42:03+08:00">2022-04-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E7%A0%94%E5%A4%8D%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">考研复试</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E7%A0%94%E5%A4%8D%E8%AF%95/%E6%9C%BA%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">机试</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>Description:</strong></p>
+<p>给定n个整数（可能为负数）组成的序列num[1]，num[2]，num[3]，……，num[n]，求该序列如num[i]+num[i+1]+……+num[j]的子段和的最大值。</p>
+<p><strong>Input:</strong></p>
+<p>第一行输入一个整数n(n&lt;&#x3D;10^6)，第二行输入n个整数。</p>
+<p><strong>Output:</strong></p>
+<p>输出答案。</p>
+<p><strong>Sample Input:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">6	</span><br><span class="line">-2 11 -4 13 -5 -2</span><br><span class="line">5</span><br><span class="line">1 2 -1 2 3</span><br></pre></td></tr></table></figure>
+
+<p><strong>Sample Output:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">20</span><br><span class="line">7</span><br></pre></td></tr></table></figure>
+
+<p><strong>Answer:</strong></p>
+<p><strong>暴力法</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> num[<span class="number">10000000</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;num[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> max = num[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = i; j &lt; n; j++) &#123;</span><br><span class="line">            sum = sum + num[j];</span><br><span class="line">            <span class="keyword">if</span> (sum &gt; max) &#123;</span><br><span class="line">                max = sum;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, max);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>改进</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> num[<span class="number">10000000</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;num[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> max = num[<span class="number">0</span>], sum = num[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (sum + num[i] &gt; num[i]) &#123;</span><br><span class="line">            sum = sum + num[i];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            sum = num[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (sum &gt; max) &#123;</span><br><span class="line">            max = sum;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, max);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/14/%E8%80%83%E7%A0%94%E5%A4%8D%E8%AF%95/%E6%9C%BA%E8%AF%95/%E5%88%86%E8%A7%A3%E8%B4%A8%E5%9B%A0%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar01.JPG">
+      <meta itemprop="name" content="Ni256o">
+      <meta itemprop="description" content="The sole certainty is that tomorrow will surprise us all.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="256's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/03/14/%E8%80%83%E7%A0%94%E5%A4%8D%E8%AF%95/%E6%9C%BA%E8%AF%95/%E5%88%86%E8%A7%A3%E8%B4%A8%E5%9B%A0%E6%95%B0/" class="post-title-link" itemprop="url">分解质因数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-14 14:05:35" itemprop="dateCreated datePublished" datetime="2022-03-14T14:05:35+08:00">2022-03-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-04-04 15:45:37" itemprop="dateModified" datetime="2022-04-04T15:45:37+08:00">2022-04-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E7%A0%94%E5%A4%8D%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">考研复试</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E7%A0%94%E5%A4%8D%E8%AF%95/%E6%9C%BA%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">机试</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>Description:</strong></p>
+<p>众所周知，任意正整数都可以表示为多个质数的乘积。<br><img src="data:image/png;base64,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" alt="img"><br>给定一个正整数n，输出它的质数乘积形式。</p>
+<p><strong>Input:</strong></p>
+<p>第一行一个正整数T表示测试样例的个数（1≤T≤100）；<br>每组样例一个正整数n（2&lt;&#x3D;n&lt;&#x3D;10^10）。</p>
+<p><strong>Output:</strong></p>
+<p>质数乘积形式。</p>
+<p><strong>Sample Input:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">10</span><br><span class="line">100</span><br><span class="line">18</span><br></pre></td></tr></table></figure>
+
+<p><strong>Sample Output:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2*5</span><br><span class="line">2^2*5^2</span><br><span class="line">2*3^2</span><br></pre></td></tr></table></figure>
+
+<p><strong>Answer:</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> prime[<span class="number">100001</span>];</span><br><span class="line"><span class="type">bool</span> isVisit[<span class="number">100001</span>];</span><br><span class="line"><span class="type">int</span> c = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">oulashai</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (isVisit[i] == <span class="literal">false</span>) &#123;</span><br><span class="line">            prime[c++] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt;= c &amp;&amp; i * prime[j] &lt;= n; j++) &#123;</span><br><span class="line">            isVisit[i * prime[j]] = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">if</span> (i % prime[j] == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> T;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> n, N;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;T);</span><br><span class="line">    oulashai(<span class="number">100001</span>);    <span class="comment">// 欧拉素数筛，100000内素数打表</span></span><br><span class="line">    <span class="keyword">while</span> (T--) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>, &amp;n);</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> arr[<span class="number">100001</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">        N = n;</span><br><span class="line">        <span class="type">int</span> k = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; c &amp;&amp; N &gt; <span class="number">1</span>; ) &#123;</span><br><span class="line">            <span class="keyword">if</span> (N % prime[i] == <span class="number">0</span>) &#123;</span><br><span class="line">                N = N / prime[i];</span><br><span class="line">                arr[k++] = prime[i];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        arr[k++] = N;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (arr[k - <span class="number">1</span>] == <span class="number">1</span>) &#123;</span><br><span class="line">            k = k - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> l = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[i] == arr[i + <span class="number">1</span>]) &#123;</span><br><span class="line">                l++;    <span class="comment">// 次幂数计数</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;%lld&quot;</span>, arr[i]);</span><br><span class="line">                <span class="keyword">if</span> (l &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">&quot;^%d&quot;</span>, l);</span><br><span class="line">                    l = <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (i &lt; k - <span class="number">1</span>) &#123;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">&quot;*&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/13/%E8%80%83%E7%A0%94%E5%A4%8D%E8%AF%95/%E6%9C%BA%E8%AF%95/%E7%B4%A0%E6%95%B0%E7%AD%9B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -479,7 +666,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
