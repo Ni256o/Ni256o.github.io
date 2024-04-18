@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon02.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon02.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon02.png">
+  <link rel="mask-icon" href="/images/icon02.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="01 Ajax1.1 定义用 XMLHttpRequest 对象与服务器通信。“异步”特性，可以在不重新刷新页面的情况下，与服务器通信，交换数据，或更新页面。 使用步骤：  创建 XHR 对象 调用 open 方法，设置 url 和 请求方法 监听 loaded 事件，接收结果 调用 send 方法，发起请求  1.2 Promise表示（管理）一个异步操作最终状态和结果值的对象。 三种状态： p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「前端开发学习 | Ajax+Node.js+Webpack学习笔记」">
+<meta property="og:url" content="http://example.com/2024/04/14/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Ajax+Node.js+Webpack/Ajax/index.html">
+<meta property="og:site_name" content="256&#39;s Blog">
+<meta property="og:description" content="01 Ajax1.1 定义用 XMLHttpRequest 对象与服务器通信。“异步”特性，可以在不重新刷新页面的情况下，与服务器通信，交换数据，或更新页面。 使用步骤：  创建 XHR 对象 调用 open 方法，设置 url 和 请求方法 监听 loaded 事件，接收结果 调用 send 方法，发起请求  1.2 Promise表示（管理）一个异步操作最终状态和结果值的对象。 三种状态： p">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-14T12:25:57.000Z">
+<meta property="article:modified_time" content="2024-04-17T12:32:59.263Z">
+<meta property="article:author" content="Ni256o">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2024/04/14/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Ajax+Node.js+Webpack/Ajax/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>「前端开发学习 | Ajax+Node.js+Webpack学习笔记」 | 256's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">256's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/14/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Ajax+Node.js+Webpack/Ajax/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar01.JPG">
+      <meta itemprop="name" content="Ni256o">
+      <meta itemprop="description" content="The sole certainty is that tomorrow will surprise us all.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="256's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          「前端开发学习 | Ajax+Node.js+Webpack学习笔记」
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-04-14 20:25:57" itemprop="dateCreated datePublished" datetime="2024-04-14T20:25:57+08:00">2024-04-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-04-17 20:32:59" itemprop="dateModified" datetime="2024-04-17T20:32:59+08:00">2024-04-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">前端开发</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Ajax-Node-js-Webpack/" itemprop="url" rel="index"><span itemprop="name">Ajax+Node.js+Webpack</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Ajax-Node-js-Webpack/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="01-Ajax"><a href="#01-Ajax" class="headerlink" title="01 Ajax"></a>01 Ajax</h2><h3 id="1-1-定义"><a href="#1-1-定义" class="headerlink" title="1.1 定义"></a>1.1 定义</h3><p>用 XMLHttpRequest 对象与服务器通信。“异步”特性，可以在不重新刷新页面的情况下，与服务器通信，交换数据，或更新页面。</p>
+<p>使用步骤：</p>
+<ul>
+<li>创建 XHR 对象</li>
+<li>调用 open 方法，设置 url 和 请求方法</li>
+<li>监听 loaded 事件，接收结果</li>
+<li>调用 send 方法，发起请求</li>
+</ul>
+<h3 id="1-2-Promise"><a href="#1-2-Promise" class="headerlink" title="1.2 Promise"></a>1.2 Promise</h3><p>表示（管理）一个异步操作最终状态和结果值的对象。</p>
+<p>三种状态：</p>
+<p>pending：待定</p>
+<p>fulfilled：已兑现</p>
+<p>reject：已拒绝</p>
+<p>一旦状态被兑现&#x2F;拒绝，则无法再改变。</p>
+<h3 id="1-3-同步与异步"><a href="#1-3-同步与异步" class="headerlink" title="1.3 同步与异步"></a>1.3 同步与异步</h3><p>js 中的异步代码：</p>
+<ul>
+<li>setTimeout &#x2F; setInterval</li>
+<li>事件</li>
+<li>Ajax</li>
+</ul>
+<p>异步代码依靠回调函数接收结果。</p>
+<h3 id="1-4-Promise-的链式调用"><a href="#1-4-Promise-的链式调用" class="headerlink" title="1.4 Promise 的链式调用"></a>1.4 Promise 的链式调用</h3><p>使用 then 函数返回新 Promise 对象特性，一直串联下去。</p>
+<h3 id="1-5-async-函数和-await"><a href="#1-5-async-函数和-await" class="headerlink" title="1.5 async 函数和 await"></a>1.5 async 函数和 await</h3><p>函数前面声明了 async 就会变成异步函数。</p>
+<p>await 等待 Promise 对象成功的结果（取代 .then）。</p>
+<p>错误捕获，try…catch…，可能出错的代码写在 try，catch 捕获 error（打印 console.dir(error)）。</p>
+<h3 id="1-6-宏任务和微任务"><a href="#1-6-宏任务和微任务" class="headerlink" title="1.6 宏任务和微任务"></a>1.6 宏任务和微任务</h3><ul>
+<li>宏任务：由浏览器环境执行的异步代码</li>
+<li>微任务：由 JS 引擎环境执行的异步代码</li>
+</ul>
+<p><strong>宏任务：</strong></p>
+<ul>
+<li>JS 脚本执行事件（script）</li>
+<li>setTimeout &#x2F; setInterval</li>
+<li>Ajax 请求完成事件</li>
+<li>用户交互事件等</li>
+</ul>
+<p><strong>微任务：</strong></p>
+<ul>
+<li>Promise对象.then()</li>
+</ul>
+<h2 id="02-Node-js-和-Webpack"><a href="#02-Node-js-和-Webpack" class="headerlink" title="02 Node.js 和 Webpack"></a>02 Node.js 和 Webpack</h2><h3 id="2-1-CommonJS-导入和导出"><a href="#2-1-CommonJS-导入和导出" class="headerlink" title="2.1 CommonJS 导入和导出"></a>2.1 CommonJS 导入和导出</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> baseURL = <span class="string">&#x27;http://hmajax.itheima.net&#x27;</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">getArraySum</span> = arr =&gt; arr.<span class="title function_">reduce</span>(<span class="function">(<span class="params">sum, item</span>) =&gt;</span> sum += item, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 导出</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">url</span>: baseURL,</span><br><span class="line">  <span class="attr">arraySum</span>: getArraySum</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 导入</span></span><br><span class="line"><span class="keyword">const</span> obj = <span class="built_in">require</span>(<span class="string">&#x27;./utils.js&#x27;</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj)</span><br><span class="line"><span class="keyword">const</span> result = obj.<span class="title function_">arraySum</span>([<span class="number">5</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-ECMAScript-标准"><a href="#2-2-ECMAScript-标准" class="headerlink" title="2.2 ECMAScript 标准"></a>2.2 ECMAScript 标准</h3><h4 id="2-1-1-默认导出和导入"><a href="#2-1-1-默认导出和导入" class="headerlink" title="2.1.1 默认导出和导入"></a>2.1.1 默认导出和导入</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> baseURL = <span class="string">&#x27;http://hmajax.itheima.net&#x27;</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">getArraySum</span> = arr =&gt; arr.<span class="title function_">reduce</span>(<span class="function">(<span class="params">sum, item</span>) =&gt;</span> sum += item, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 默认导出</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">url</span>: baseURL,</span><br><span class="line">  <span class="attr">arraySum</span>: getArraySum</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 默认导入</span></span><br><span class="line"><span class="keyword">import</span> obj <span class="keyword">from</span> <span class="string">&#x27;./utils.js&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj)</span><br><span class="line"><span class="keyword">const</span> result = obj.<span class="title function_">arraySum</span>([<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>])</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// package.josn 文件</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;module&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-1-2-命名导出和导入"><a href="#2-1-2-命名导出和导入" class="headerlink" title="2.1.2 命名导出和导入"></a>2.1.2 命名导出和导入</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 命名导出</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> baseURL = <span class="string">&#x27;http://hmajax.itheima.net&#x27;</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">getArraySum</span> = arr =&gt; arr.<span class="title function_">reduce</span>(<span class="function">(<span class="params">sum, item</span>) =&gt;</span> sum += item, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 命名导入</span></span><br><span class="line"><span class="keyword">import</span> &#123;baseURL, getArraySum&#125; <span class="keyword">from</span> <span class="string">&#x27;./utils.js&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(baseURL)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(getArraySum)</span><br><span class="line"><span class="keyword">const</span> result = <span class="title function_">getArraySum</span>([<span class="number">10</span>, <span class="number">21</span>, <span class="number">33</span>])</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result)</span><br></pre></td></tr></table></figure>
+
+<p>如何选择：</p>
+<ul>
+<li>按需加载，使用命名导出和导入</li>
+<li>全部加载，使用默认导出和导入</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/04/09/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/HTML+CSS+JS/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="prev" title="「前端开发学习 | JavaScript学习笔记」">
+      <i class="fa fa-chevron-left"></i> 「前端开发学习 | JavaScript学习笔记」
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/04/18/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Vue%E6%A1%86%E6%9E%B6%E5%BC%80%E5%8F%91/Vue%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="「Vue框架 | Vue学习笔记」">
+      「Vue框架 | Vue学习笔记」 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#01-Ajax"><span class="nav-text">01 Ajax</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E5%AE%9A%E4%B9%89"><span class="nav-text">1.1 定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Promise"><span class="nav-text">1.2 Promise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E5%90%8C%E6%AD%A5%E4%B8%8E%E5%BC%82%E6%AD%A5"><span class="nav-text">1.3 同步与异步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-Promise-%E7%9A%84%E9%93%BE%E5%BC%8F%E8%B0%83%E7%94%A8"><span class="nav-text">1.4 Promise 的链式调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-async-%E5%87%BD%E6%95%B0%E5%92%8C-await"><span class="nav-text">1.5 async 函数和 await</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-%E5%AE%8F%E4%BB%BB%E5%8A%A1%E5%92%8C%E5%BE%AE%E4%BB%BB%E5%8A%A1"><span class="nav-text">1.6 宏任务和微任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#02-Node-js-%E5%92%8C-Webpack"><span class="nav-text">02 Node.js 和 Webpack</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-CommonJS-%E5%AF%BC%E5%85%A5%E5%92%8C%E5%AF%BC%E5%87%BA"><span class="nav-text">2.1 CommonJS 导入和导出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-ECMAScript-%E6%A0%87%E5%87%86"><span class="nav-text">2.2 ECMAScript 标准</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1-%E9%BB%98%E8%AE%A4%E5%AF%BC%E5%87%BA%E5%92%8C%E5%AF%BC%E5%85%A5"><span class="nav-text">2.1.1 默认导出和导入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-2-%E5%91%BD%E5%90%8D%E5%AF%BC%E5%87%BA%E5%92%8C%E5%AF%BC%E5%85%A5"><span class="nav-text">2.1.2 命名导出和导入</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ni256o"
+      src="/images/avatar01.JPG">
+  <p class="site-author-name" itemprop="name">Ni256o</p>
+  <div class="site-description" itemprop="description">The sole certainty is that tomorrow will surprise us all.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/c2560214@163.com" title="E-Mail → c2560214@163.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022.03.13 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ni256o</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div> -->
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
