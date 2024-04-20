@@ -227,17 +227,17 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 三步曲</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">hexo clean</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">hexo generate</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">hexo server</span></span><br><span class="line">// 一步到位也行</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">hexo cl &amp;&amp; hexo g &amp;&amp; hexo s</span></span><br></pre></td></tr></table></figure>
 
 <p>在浏览器输入 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a> 进行本地访问</p>
-<img src="/images/image_202403090201.png" alt="Hexo博客" />
+<img src="/images/image_202403090201.png" alt="Hexo博客">
 
 <p>丑是丑了点，但别管</p>
 <h2 id="3-一些过程中遇到的问题"><a href="#3-一些过程中遇到的问题" class="headerlink" title="3 一些过程中遇到的问题"></a>3 一些过程中遇到的问题</h2><p><strong>问题1：</strong></p>
-<img src="/images/image_202403090301.png" alt="问题1" />
+<img src="/images/image_202403090301.png" alt="问题1">
 
 <p><strong>解决方法：</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">npm cache clean --force  // 清除npm缓存</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">npm config <span class="built_in">set</span> strict-ssl <span class="literal">false</span>  // 取消ssl验证</span></span><br><span class="line">再npm install想安装的东西</span><br></pre></td></tr></table></figure>
 
 <p><strong>问题2：</strong></p>
-<img src="/images/image_202403090302.png" alt="问题2" />
+<img src="/images/image_202403090302.png" alt="问题2">
 
 <p><strong>解决方法：</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo -s  // 管理员权限</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">输入密码</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">npm install hexo-cli -g  // 下载安装</span></span><br></pre></td></tr></table></figure>

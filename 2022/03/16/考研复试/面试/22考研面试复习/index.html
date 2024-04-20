@@ -322,7 +322,7 @@
 <li>const可以看作是一个只读变量，有作用域，需要分配内存。</li>
 <li>const可以进行调试；#define不能进行调试，因为在预处理阶段就已经替换掉了。</li>
 </ol>
-<h2 id="3-数据结构"><a href="#3-数据结构" class="headerlink" title="3 数据结构"></a>3 数据结构</h2><h3 id="3-1-逻辑结构"><a href="#3-1-逻辑结构" class="headerlink" title="3.1 逻辑结构"></a>3.1 逻辑结构</h3><img src="https://pic2.zhimg.com/80/v2-90b02c25d3095b845614af0a9d5d8ce5_1440w.jpg" alt="逻辑结构" style="zoom:60%;" />
+<h2 id="3-数据结构"><a href="#3-数据结构" class="headerlink" title="3 数据结构"></a>3 数据结构</h2><h3 id="3-1-逻辑结构"><a href="#3-1-逻辑结构" class="headerlink" title="3.1 逻辑结构"></a>3.1 逻辑结构</h3><img src="https://pic2.zhimg.com/80/v2-90b02c25d3095b845614af0a9d5d8ce5_1440w.jpg" alt="逻辑结构" style="zoom:60%;">
 
 <h3 id="3-2-常见的数据结构"><a href="#3-2-常见的数据结构" class="headerlink" title="3.2 常见的数据结构"></a>3.2 常见的数据结构</h3><ol>
 <li>数组：顺序存储，随机访问</li>
@@ -677,7 +677,7 @@
 <li>第三次挥手：被动关闭方发送一个FIN，用来关闭被动关闭方到主动关闭方的数据传送，也就是告诉主动关闭方，我的数据也发送完了，不会再给你发数据了。</li>
 <li>第四次挥手：主动关闭方收到FIN后，发送一个ACK给被动关闭方，确认序号为收到序号+1，至此，完成四次挥手。</li>
 </ol>
-<img src="/images/image-2022032701.png" alt="TCP三次握手&四次挥手" style="zoom:60%;" />
+<img src="/images/image-2022032701.png" alt="TCP三次握手&四次挥手" style="zoom:60%;">
 
 <h3 id="5-21-TCP-为什么要进行三次握手？"><a href="#5-21-TCP-为什么要进行三次握手？" class="headerlink" title="5.21 TCP 为什么要进行三次握手？"></a>5.21 TCP 为什么要进行三次握手？</h3><p>因为信道不可靠，而 TCP 想在不可靠信道上建立可靠地传输，那么三次通信是理论上的最小值。</p>
 <p>双方都需要确认对方收到了自己发送的序列号，确认过程最少要进行三次通信。</p>

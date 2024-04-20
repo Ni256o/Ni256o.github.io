@@ -316,7 +316,7 @@
 <li>const可以看作是一个只读变量，有作用域，需要分配内存。</li>
 <li>const可以进行调试；#define不能进行调试，因为在预处理阶段就已经替换掉了。</li>
 </ol>
-<h2 id="3-数据结构"><a href="#3-数据结构" class="headerlink" title="3 数据结构"></a>3 数据结构</h2><h3 id="3-1-逻辑结构"><a href="#3-1-逻辑结构" class="headerlink" title="3.1 逻辑结构"></a>3.1 逻辑结构</h3><img src="https://pic2.zhimg.com/80/v2-90b02c25d3095b845614af0a9d5d8ce5_1440w.jpg" alt="逻辑结构" style="zoom:60%;" />
+<h2 id="3-数据结构"><a href="#3-数据结构" class="headerlink" title="3 数据结构"></a>3 数据结构</h2><h3 id="3-1-逻辑结构"><a href="#3-1-逻辑结构" class="headerlink" title="3.1 逻辑结构"></a>3.1 逻辑结构</h3><img src="https://pic2.zhimg.com/80/v2-90b02c25d3095b845614af0a9d5d8ce5_1440w.jpg" alt="逻辑结构" style="zoom:60%;">
 
 <h3 id="3-2-常见的数据结构"><a href="#3-2-常见的数据结构" class="headerlink" title="3.2 常见的数据结构"></a>3.2 常见的数据结构</h3><ol>
 <li>数组：顺序存储，随机访问</li>
@@ -671,7 +671,7 @@
 <li>第三次挥手：被动关闭方发送一个FIN，用来关闭被动关闭方到主动关闭方的数据传送，也就是告诉主动关闭方，我的数据也发送完了，不会再给你发数据了。</li>
 <li>第四次挥手：主动关闭方收到FIN后，发送一个ACK给被动关闭方，确认序号为收到序号+1，至此，完成四次挥手。</li>
 </ol>
-<img src="/images/image-2022032701.png" alt="TCP三次握手&四次挥手" style="zoom:60%;" />
+<img src="/images/image-2022032701.png" alt="TCP三次握手&四次挥手" style="zoom:60%;">
 
 <h3 id="5-21-TCP-为什么要进行三次握手？"><a href="#5-21-TCP-为什么要进行三次握手？" class="headerlink" title="5.21 TCP 为什么要进行三次握手？"></a>5.21 TCP 为什么要进行三次握手？</h3><p>因为信道不可靠，而 TCP 想在不可靠信道上建立可靠地传输，那么三次通信是理论上的最小值。</p>
 <p>双方都需要确认对方收到了自己发送的序列号，确认过程最少要进行三次通信。</p>
@@ -1193,7 +1193,7 @@
 <h2 id="4-闰年规则"><a href="#4-闰年规则" class="headerlink" title="4 闰年规则"></a>4 闰年规则</h2><p>能被4整除但不能被100整除；能被400整除。</p>
 <h2 id="5-约瑟夫环"><a href="#5-约瑟夫环" class="headerlink" title="5 约瑟夫环"></a>5 约瑟夫环</h2><p>n — n人构成的约瑟夫环<br>​m — 每次移除第m个人<br>​约定：<br>​f(n)表示n人构成的约瑟夫环，每次移除第m个人的解</p>
 <p><strong>f(n) &#x3D; (f(n - 1, m) + m ) % n</strong></p>
-<h2 id="6-海伦公式求三角形面积"><a href="#6-海伦公式求三角形面积" class="headerlink" title="6 海伦公式求三角形面积"></a>6 海伦公式求三角形面积</h2><img src="/images/image-2022030101.png" alt="image-2022030101.png" style="zoom:50%;" />
+<h2 id="6-海伦公式求三角形面积"><a href="#6-海伦公式求三角形面积" class="headerlink" title="6 海伦公式求三角形面积"></a>6 海伦公式求三角形面积</h2><img src="/images/image-2022030101.png" alt="image-2022030101.png" style="zoom:50%;">
 
 <h2 id="7-字符串函数"><a href="#7-字符串函数" class="headerlink" title="7 字符串函数"></a>7 字符串函数</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">strcat</span>(str1, str2);    <span class="comment">// 字符串拼接</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">strstr</span>(str1, str2);</span><br><span class="line">str1: 被查找目标</span><br><span class="line">str2: 要查找对象</span><br><span class="line">返回值：若str2是str1的子串，则返回str2在str1的首次出现的地址；如果str2不是str1的子串，则返回<span class="literal">NULL</span>。</span><br></pre></td></tr></table></figure>
 

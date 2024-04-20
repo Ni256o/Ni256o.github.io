@@ -180,10 +180,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2024-04-18 13:25:16 / 修改时间：13:26:50" itemprop="dateCreated datePublished" datetime="2024-04-18T13:25:16+08:00">2024-04-18</time>
+              <time title="创建时间：2024-04-18 13:25:16" itemprop="dateCreated datePublished" datetime="2024-04-18T13:25:16+08:00">2024-04-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-04-20 16:44:21" itemprop="dateModified" datetime="2024-04-20T16:44:21+08:00">2024-04-20</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -213,7 +219,286 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <h2 id="1-Vue-简介"><a href="#1-Vue-简介" class="headerlink" title="1 Vue 简介"></a>1 Vue 简介</h2><h3 id="1-1-Vue-的特点"><a href="#1-1-Vue-的特点" class="headerlink" title="1.1 Vue 的特点"></a>1.1 Vue 的特点</h3><ol>
+<li><p>遵循 MVVM 模式</p>
+</li>
+<li><p>编码简洁，体积小，运行效率高，适合移动&#x2F;PC 端开发</p>
+</li>
+<li><p>它本身只关注 UI, 也可以引入其它第三方库开发项目</p>
+</li>
+</ol>
+<h3 id="1-2-与其它-JS-框架的关联"><a href="#1-2-与其它-JS-框架的关联" class="headerlink" title="1.2 与其它 JS 框架的关联"></a>1.2 与其它 JS 框架的关联</h3><ol>
+<li><p>借鉴 Angular 的<strong>模板</strong>和<strong>数据绑定</strong>技术</p>
+</li>
+<li><p>借鉴 React 的<strong>组件化</strong>和<strong>虚拟 DOM</strong> 技术</p>
+</li>
+</ol>
+<h2 id="2-初识-Vue"><a href="#2-初识-Vue" class="headerlink" title="2 初识 Vue"></a>2 初识 Vue</h2><h3 id="2-1-模板语法"><a href="#2-1-模板语法" class="headerlink" title="2.1 模板语法"></a>2.1 模板语法</h3><ol>
+<li><p>插值语法（双大括号表达式）</p>
+</li>
+<li><p>指令（以 v-开头）</p>
+</li>
+</ol>
+<h4 id="2-1-1-插值语法"><a href="#2-1-1-插值语法" class="headerlink" title="2.1.1 插值语法"></a>2.1.1 插值语法</h4><ol>
+<li><p>功能：用于解析标签体内容</p>
+</li>
+<li><p>语法：<code>&#123;&#123;xxx&#125;&#125;</code> ，xxxx 会作为 js 表达式解析</p>
+</li>
+</ol>
+<h4 id="2-1-2-指令语法"><a href="#2-1-2-指令语法" class="headerlink" title="2.1.2 指令语法"></a>2.1.2 指令语法</h4><ol>
+<li><p>功能：解析标签属性、解析标签体内容、绑定事件</p>
+</li>
+<li><p>举例：v-bind:href &#x3D; ‘xxxx’ ，xxxx 会作为 js 表达式被解析</p>
+</li>
+<li><p>说明：Vue 中有有很多的指令，此处只是用 v-bind 举个例子</p>
+</li>
+</ol>
+<h3 id="2-2-数据绑定"><a href="#2-2-数据绑定" class="headerlink" title="2.2 数据绑定"></a>2.2 数据绑定</h3><h4 id="2-2-1-单向数据绑定"><a href="#2-2-1-单向数据绑定" class="headerlink" title="2.2.1 单向数据绑定"></a>2.2.1 单向数据绑定</h4><ol>
+<li><p>语法：v-bind:href &#x3D;”xxx” 或简写为 :href</p>
+</li>
+<li><p>特点：数据只能从 data 流向页面</p>
+</li>
+</ol>
+<h4 id="2-2-2-双向数据绑定"><a href="#2-2-2-双向数据绑定" class="headerlink" title="2.2.2 双向数据绑定"></a>2.2.2 双向数据绑定</h4><ol>
+<li>语法：v-mode:value&#x3D;”xxx” 或简写为 v-model&#x3D;”xxx”</li>
+<li>特点：数据不仅能从 data 流向页面，还能从页面流向 data</li>
+</ol>
+<blockquote>
+<p>备注：</p>
+<ol>
+<li><p>双向绑定一般都应用在表单类元素上（如：input、select等）。</p>
+</li>
+<li><p>v-model:value 可以简写为 v-model，因为v-model默认收集的就是value值。</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="2-3-MVVM-模型"><a href="#2-3-MVVM-模型" class="headerlink" title="2.3 MVVM 模型"></a>2.3 MVVM 模型</h3><ol>
+<li><p>M：模型(Model) ：对应 data 中的数据</p>
+</li>
+<li><p>V：视图(View) ：模板</p>
+</li>
+<li><p>VM：视图模型(ViewModel) ： Vue 实例对象</p>
+</li>
+</ol>
+<h3 id="2-4-数据代理"><a href="#2-4-数据代理" class="headerlink" title="2.4 数据代理"></a>2.4 数据代理</h3><p>通过一个对象代理对另一个对象中属性的操作（读&#x2F;写）。</p>
+<p>可以通过 Object.defineProperty。</p>
+<h4 id="2-4-1-Vue-中的数据代理"><a href="#2-4-1-Vue-中的数据代理" class="headerlink" title="2.4.1 Vue 中的数据代理"></a>2.4.1 Vue 中的数据代理</h4><p>  通过 vm 对象来代理 data 对象中属性的操作（读&#x2F;写）。</p>
+<h4 id="2-4-2-Vue-中数据代理的好处"><a href="#2-4-2-Vue-中数据代理的好处" class="headerlink" title="2.4.2 Vue 中数据代理的好处"></a>2.4.2 Vue 中数据代理的好处</h4><p>更加方便的操作 data 中的数据。</p>
+<h4 id="2-4-3-基本原理"><a href="#2-4-3-基本原理" class="headerlink" title="2.4.3 基本原理"></a>2.4.3 基本原理</h4><ul>
+<li>通过 Object.defineProperty() 把 data 对象中所有属性添加到 vm 上。</li>
+<li>为每一个添加到 vm 上的属性，都指定一个 getter&#x2F;setter。</li>
+<li>在 getter&#x2F;setter 内部去操作（读&#x2F;写）data 中对应的属性。</li>
+</ul>
+<h3 id="2-5-事件处理"><a href="#2-5-事件处理" class="headerlink" title="2.5 事件处理"></a>2.5 事件处理</h3><h4 id="2-5-1-绑定监听"><a href="#2-5-1-绑定监听" class="headerlink" title="2.5.1 绑定监听"></a>2.5.1 绑定监听</h4><ol>
+<li><p>v-on:xxx&#x3D;”fun”</p>
+</li>
+<li><p>@xxx&#x3D;”fun”</p>
+</li>
+<li><p>@xxx&#x3D;”fun(参数)”</p>
+</li>
+<li><p>默认事件形参: event</p>
+</li>
+<li><p>隐含属性对象: $event</p>
+</li>
+</ol>
+<h4 id="2-5-2-事件修饰符"><a href="#2-5-2-事件修饰符" class="headerlink" title="2.5.2 事件修饰符"></a>2.5.2 事件修饰符</h4><ol>
+<li>prevent：阻止事件的默认行为 event.preventDefault()</li>
+<li>stop：停止事件冒泡 event.stopPropagation()</li>
+</ol>
+<h4 id="2-5-3-按键修饰符"><a href="#2-5-3-按键修饰符" class="headerlink" title="2.5.3 按键修饰符"></a>2.5.3 按键修饰符</h4><ol>
+<li><p>keycode：操作的是某个 keycode 值的键</p>
+</li>
+<li><p>keyName：操作的某个按键名的键(少部分)</p>
+</li>
+</ol>
+<h3 id="2-6-计算属性与监视"><a href="#2-6-计算属性与监视" class="headerlink" title="2.6 计算属性与监视"></a>2.6 计算属性与监视</h3><h4 id="2-6-1-计算属性-computed"><a href="#2-6-1-计算属性-computed" class="headerlink" title="2.6.1 计算属性-computed"></a>2.6.1 计算属性-computed</h4><ol>
+<li>要显示的数据不存在，要通过计算得来。</li>
+<li>在 computed 对象中定义计算属性。</li>
+<li>在页面中使用 <code>&#123;&#123;方法名&#125;&#125;</code> 来显示计算的结果。</li>
+</ol>
+<h4 id="2-6-2-监视属性-watch"><a href="#2-6-2-监视属性-watch" class="headerlink" title="2.6.2 监视属性-watch"></a>2.6.2 监视属性-watch</h4><ol>
+<li><p>通过通过 vm 对象的 $watch() 或 watch 配置来监视指定的属性。</p>
+</li>
+<li><p>当属性变化时，回调函数自动调用，在函数内部进行计算。</p>
+</li>
+</ol>
+<h3 id="2-7-class-与-style-绑定"><a href="#2-7-class-与-style-绑定" class="headerlink" title="2.7 class 与 style 绑定"></a>2.7 class 与 style 绑定</h3><h4 id="2-7-1-理解"><a href="#2-7-1-理解" class="headerlink" title="2.7.1 理解"></a>2.7.1 理解</h4><ol>
+<li><p>在应用界面中, 某个(些)元素的样式是变化的</p>
+</li>
+<li><p>class&#x2F;style 绑定就是专门用来实现动态样式效果的技术</p>
+</li>
+</ol>
+<h4 id="2-7-2-class-绑定"><a href="#2-7-2-class-绑定" class="headerlink" title="2.7.2 class 绑定"></a>2.7.2 class 绑定</h4><ol>
+<li><p>:class&#x3D;’xxx’</p>
+</li>
+<li><p>表达式是字符串： ‘classA’</p>
+</li>
+<li><p>表达式是对象： {classA:isA, classB: isB} </p>
+</li>
+<li><p>表达式是数组： [‘classA’, ‘classB’]</p>
+</li>
+</ol>
+<h4 id="2-7-3-style-绑定"><a href="#2-7-3-style-绑定" class="headerlink" title="2.7.3 style 绑定"></a>2.7.3 style 绑定</h4><ol>
+<li><p>:style&#x3D;”{ color: activeColor, fontSize: fontSize + ‘px’ }”</p>
+</li>
+<li><p>其中 activeColor&#x2F;fontSize 是 data 属性</p>
+</li>
+</ol>
+<h3 id="2-8-条件渲染"><a href="#2-8-条件渲染" class="headerlink" title="2.8 条件渲染"></a>2.8 条件渲染</h3><h4 id="2-8-1-条件渲染指令"><a href="#2-8-1-条件渲染指令" class="headerlink" title="2.8.1 条件渲染指令"></a>2.8.1 条件渲染指令</h4><ol>
+<li><p>v-if 与 v-else</p>
+</li>
+<li><p>v-show</p>
+</li>
+</ol>
+<h4 id="2-8-2-比较-v-if-与-v-show"><a href="#2-8-2-比较-v-if-与-v-show" class="headerlink" title="2.8.2 比较 v-if 与 v-show"></a>2.8.2 比较 v-if 与 v-show</h4><ol>
+<li><p>如果需要频繁切换 v-show 较好</p>
+</li>
+<li><p>当条件不成立时，v-if 的所有子节点不会解析(项目中使用)</p>
+</li>
+</ol>
+<h3 id="2-9-列表渲染"><a href="#2-9-列表渲染" class="headerlink" title="2.9 列表渲染"></a>2.9 列表渲染</h3><h4 id="2-9-1-列表显示指令"><a href="#2-9-1-列表显示指令" class="headerlink" title="2.9.1  列表显示指令"></a>2.9.1  列表显示指令</h4><p>遍历数组: v-for &#x2F; index</p>
+<p>遍历对象: v-for &#x2F; key</p>
+<h4 id="2-9-2-react、vue中的key有什么作用？（key的内部原理）"><a href="#2-9-2-react、vue中的key有什么作用？（key的内部原理）" class="headerlink" title="2.9.2 react、vue中的key有什么作用？（key的内部原理）"></a>2.9.2 react、vue中的key有什么作用？（key的内部原理）</h4><pre><code>    1. 虚拟 DOM 中 key 的作用：
+            key是key是虚拟 DOM 对象的标识，当数据发生变化时，Vue会根据【新数据】生成【新的虚拟 DOM】， 随后Vue进行【新虚拟 DOM】与【旧虚拟 DOM】的差异比较，比较规则如下：
+</code></pre>
+<ol start="2">
+<li><p>对比规则：</p>
+<p>（1）旧虚拟 DOM 中找到了与新虚拟 DOM 相同的 key ：</p>
+<p>​         ① 若虚拟 DOM 中内容没变, 直接使用之前的真实 DOM！</p>
+<p>​         ② 若虚拟 DOM 中内容变了, 则生成新的真实 DOM，随后替换掉页面中之前的真实 DOM。</p>
+<p>（2）旧虚拟 DOM 中未找到与新虚拟 DOM 相同的 key，创建新的真实 DOM，随后渲染到到页面。</p>
+</li>
+<li><p>用 index 作为 key 可能会引发的问题：</p>
+<p>（1）若对数据进行：逆序添加、逆序删除等破坏顺序操作：会产生没有必要的真实 DOM 更新 &#x3D;&#x3D;&gt; 界面效果没问题, 但效率低。</p>
+<p>（2）如果结构中还包含输入类的 DOM：会产生错误 DOM 更新 &#x3D;&#x3D;&gt; 界面有问题。</p>
+</li>
+<li><p>开发中如何选择 key？</p>
+<p>（1）最好使用每条数据的唯一标识作为 key, 比如 id、手机号、身份证号、学号等唯一值。</p>
+<p>（2）如果不存在对数据的逆序添加、逆序删除等破坏顺序操作，仅用于渲染列表用于展示，使用 index 作为 key 是没有问题的。</p>
+</li>
+</ol>
+<h4 id="2-9-3-Vue监视数据的原理"><a href="#2-9-3-Vue监视数据的原理" class="headerlink" title="2.9.3 Vue监视数据的原理"></a>2.9.3 Vue监视数据的原理</h4><ol>
+<li><p>Vue 会监视 data 中所有层次的数据。</p>
+</li>
+<li><p>如何监测对象中的数据？</p>
+<p>通过 setter 实现监视，且要在 new Vue 时就传入要监测的数据。</p>
+<p>（1）对象中后追加的属性，Vue 默认不做响应式处理</p>
+<p>（2）如需给后添加的属性做响应式，请使用如下API：</p>
+<p>​        Vue.set(target，propertyName&#x2F;index，value) 或 </p>
+<p>​        vm.$set(target，propertyName&#x2F;index，value)</p>
+</li>
+<li><p>如何监测数组中的数据？</p>
+<p> 通过包裹数组更新元素的方法实现，本质就是做了两件事：</p>
+<p>（1）调用原生对应的方法对数组进行更新。</p>
+<p>（2）重新解析模板，进而更新页面。</p>
+</li>
+<li><p>在 Vue 修改数组中的某个元素一定要用如下方法：</p>
+<p>（1）使用这些API：push()、pop()、shift()、unshift()、splice()、sort()、reverse()</p>
+<p>（2）Vue.set() 或 vm.$set()</p>
+</li>
+</ol>
+<p>特别注意：Vue.set() 和 vm.$set() 不能给vm 或 vm的根数据对象 添加属性！！！</p>
+<h3 id="2-10-过滤器"><a href="#2-10-过滤器" class="headerlink" title="2.10 过滤器"></a>2.10 过滤器</h3><p>定义：对要显示的数据进行特定格式化后再显示（适用于一些简单逻辑的处理）。</p>
+<p>语法：</p>
+<ol>
+<li>注册过滤器：Vue.filter(name,callback) 或 new Vue{filters:{}}。</li>
+<li>使用过滤器：<code>&#123;&#123; xxx | 过滤器名&#125;&#125;</code>  或  v-bind:属性 &#x3D; “xxx | 过滤器名”。</li>
+</ol>
+<p>  备注：</p>
+<ol>
+<li><p>过滤器也可以接收额外参数、多个过滤器也可以串联。</p>
+</li>
+<li><p>并没有改变原本的数据, 是产生新的对应的数据。</p>
+</li>
+</ol>
+<h3 id="2-11-内置指令"><a href="#2-11-内置指令" class="headerlink" title="2.11 内置指令"></a>2.11 内置指令</h3><ul>
+<li><p>v-bind：单向绑定解析表达式, 可简写为 :xxx</p>
+</li>
+<li><p>v-model：双向数据绑定</p>
+</li>
+<li><p>v-for：遍历数组&#x2F;对象&#x2F;字符串</p>
+</li>
+<li><p>v-on：绑定事件监听，可简写为@</p>
+</li>
+<li><p>v-if ：条件渲染（动态控制节点是否存存在）</p>
+</li>
+<li><p>v-else：条件渲染（动态控制节点是否存存在）</p>
+</li>
+<li><p>v-show：条件渲染 (动态控制节点是否展示)，通过控制 display 样式来控制显示&#x2F;隐藏</p>
+</li>
+<li><p>v-text 指令：更新元素的 textContent</p>
+<ol>
+<li>作用：向其所在的节点中渲染文本内容。</li>
+<li>与插值语法的区别：v-text 会替换掉节点中的内容，<code>&#123;&#123;xx&#125;&#125;</code> 则不会。</li>
+</ol>
+</li>
+<li><p>v-html 指令：更新元素的 innerHTML</p>
+<ol>
+<li><p>作用：向指定节点中渲染包含 html 结构的内容。</p>
+</li>
+<li><p>与插值语法的区别：</p>
+<p>（1）v-html 会替换掉节点中所有的内容，<code>&#123;&#123;xx&#125;&#125;</code> 则不会。</p>
+<p>（2）v-html 可以识别 html 结构。</p>
+</li>
+<li><p>严重注意：v-html 有安全性问题！！！！</p>
+<p>（1）在网站上动态渲染任意 html 是非常危险的，容易导致 XSS 攻击。</p>
+<p>（2）一定要在可信的内容上使用 v-html，永不要用在用户提交的内容上！</p>
+</li>
+</ol>
+</li>
+<li><p>v-cloak 指令（没有值）：防止闪现, 与 css 配合: [v-cloak] { display: none }</p>
+<ol>
+<li>本质是一个特殊属性，Vue 实例创建完毕并接管容器后，会删掉 v-cloak 属性。</li>
+<li>使用 css 配合 v-cloak 可以解决网速慢时页面展示出 <code>&#123;&#123;xxx&#125;&#125;</code> 的问题。</li>
+</ol>
+</li>
+<li><p>v-once 指令：</p>
+<ol>
+<li>v-once 所在节点在初次动态渲染后，就视为静态内容了。</li>
+<li>以后数据的改变不会引起 v-once 所在结构的更新。</li>
+</ol>
+</li>
+<li><p>v-pre 指令：</p>
+<ol>
+<li><p>跳过其所在节点的编译过程。</p>
+</li>
+<li><p>可利用它跳过：没有使用指令语法、没有使用插值语法的节点，会加快编译。</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="2-12-自定义指令"><a href="#2-12-自定义指令" class="headerlink" title="2.12 自定义指令"></a>2.12 自定义指令</h3><p>一、定义语法：</p>
+<ol>
+<li><p>局部指令：</p>
+<p>new Vue({                                                new Vue({</p>
+<p>directives:{指令名:配置对象}       或          directives{指令名:回调函数}</p>
+<p>})                                                                })</p>
+</li>
+<li><p>全局指令：</p>
+<p> Vue.directive(指令名,配置对象)   或   Vue.directive(指令名,回调函数)</p>
+</li>
+</ol>
+<p>二、配置对象中常用的3个回调：</p>
+<ol>
+<li>bind：指令与元素成功绑定时调用。</li>
+<li>inserted：指令所在元素被插入页面时调用。</li>
+<li>update：指令所在模板结构被重新解析时调用。</li>
+</ol>
+<p>三、备注：</p>
+<ol>
+<li><p>指令定义时不加 v-，但使用时要加 v-；</p>
+</li>
+<li><p>指令名如果是多个单词，要使用 kebab-case 命名方式，不要用 camelCase 命名。</p>
+</li>
+</ol>
+<h3 id="2-13-生命周期"><a href="#2-13-生命周期" class="headerlink" title="2.13 生命周期"></a>2.13 生命周期</h3><ol>
+<li>又名：生命周期回调函数、生命周期函数、生命周期钩子。</li>
+<li>是什么：Vue 在关键时刻帮我们调用的一些特殊名称的函数。</li>
+<li>生命周期函数的名字不可更改，但函数的具体内容是程序员根据需求编写的。</li>
+<li>生命周期函数中的 this 指向是 vm 或 组件实例对象。</li>
+</ol>
+<p><img src="/.com//%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png" alt="生命周期"></p>
+
       
     </div>
 
@@ -834,15 +1119,15 @@
 </tr>
 </tbody></table>
 <h5 id="21-2-3-字符类"><a href="#21-2-3-字符类" class="headerlink" title="21.2.3  字符类"></a>21.2.3  字符类</h5><ol>
-<li><p><input disabled="" type="checkbox"> 
+<li><p><input disabled type="checkbox"> 
 匹配字符集合</p>
 <p>例如：[abc]表示只要包含a、b、c中任意<strong>一个</strong>字符就行</p>
 </li>
-<li><p><input disabled="" type="checkbox"> 
+<li><p><input disabled type="checkbox"> 
 里面加上 - 连字符，表示一个范围</p>
 <p>例如：[a-z]，[a-zA-Z]，[0-9]</p>
 </li>
-<li><p><input disabled="" type="checkbox"> 
+<li><p><input disabled type="checkbox"> 
 里面加上 ^取反符号，表示除了…</p>
 <p>例如：<code>[^a-z]</code> 表示匹配除了小写字母以外的字符</p>
 </li>
@@ -1408,12 +1693,12 @@
 <tbody><tr>
 <td align="center">list-style-type</td>
 <td align="center">设置列表符号</td>
-<td>常用值如下：<br />none：不显示前面的标识（很常用！）<br />square：实心方块<br />disc：圆形<br />decimal：数字<br />lower-roman：小写罗马字<br />upper-roman：大写罗马字<br />lower-alpha：小写字母<br />upper-alpha：大写字母</td>
+<td>常用值如下：<br>none：不显示前面的标识（很常用！）<br>square：实心方块<br>disc：圆形<br>decimal：数字<br>lower-roman：小写罗马字<br>upper-roman：大写罗马字<br>lower-alpha：小写字母<br>upper-alpha：大写字母</td>
 </tr>
 <tr>
 <td align="center">list-style-position</td>
 <td align="center">设置列表符号的位置</td>
-<td>inside：在li的里面<br />outside：在li的外边</td>
+<td>inside：在li的里面<br>outside：在li的外边</td>
 </tr>
 <tr>
 <td align="center">list-style-image</td>
@@ -1450,7 +1735,7 @@
 <tr>
 <td align="center">border-style</td>
 <td align="center">边框风格</td>
-<td>none默认值<br />solid实线<br />dashed虚线<br />dotted点线<br />double双实线</td>
+<td>none默认值<br>solid实线<br>dashed虚线<br>dotted点线<br>double双实线</td>
 </tr>
 <tr>
 <td align="center">border</td>
@@ -1472,27 +1757,27 @@
 <tbody><tr>
 <td align="center">table-layout</td>
 <td align="center">设置列宽度</td>
-<td>auto：自动，列宽根据内容计算（默认值）。<br />fixed：固定列宽，平均分。</td>
+<td>auto：自动，列宽根据内容计算（默认值）。<br>fixed：固定列宽，平均分。</td>
 </tr>
 <tr>
 <td align="center">border-spacing</td>
 <td align="center">单元格间距</td>
-<td>CSS中可用的长度值。<br />生效的前提：单元格边框不能合并。</td>
+<td>CSS中可用的长度值。<br>生效的前提：单元格边框不能合并。</td>
 </tr>
 <tr>
 <td align="center">border-collapse</td>
 <td align="center">合并单元格边框</td>
-<td>collapse：合并<br />separate：不合并</td>
+<td>collapse：合并<br>separate：不合并</td>
 </tr>
 <tr>
 <td align="center">empty-cells</td>
 <td align="center">隐藏没有内容的单元格</td>
-<td>show：显示，默认<br />hide：隐藏<br />生效前提：单元格不能合并。</td>
+<td>show：显示，默认<br>hide：隐藏<br>生效前提：单元格不能合并。</td>
 </tr>
 <tr>
 <td align="center">caption-side</td>
 <td align="center">设置表格标题位置</td>
-<td>top：上面（默认值）<br />bottom：在表格下面</td>
+<td>top：上面（默认值）<br>bottom：在表格下面</td>
 </tr>
 </tbody></table>
 <h4 id="1-4-7-CSS背景属性"><a href="#1-4-7-CSS背景属性" class="headerlink" title="1.4.7 CSS背景属性"></a>1.4.7 CSS背景属性</h4><table>
@@ -1506,7 +1791,7 @@
 <tbody><tr>
 <td align="center">background-color</td>
 <td align="center">设置背景颜色</td>
-<td>符合CSS中颜色规范的值。<br />默认背景颜色是transparent。</td>
+<td>符合CSS中颜色规范的值。<br>默认背景颜色是transparent。</td>
 </tr>
 <tr>
 <td align="center">background-image</td>
@@ -1516,12 +1801,12 @@
 <tr>
 <td align="center">background-repeat</td>
 <td align="center">设置背景重复方式</td>
-<td>repeat：重复，铺满整个元素，默认值。<br />repeat-x：只在水平方向重复。<br />repeat-y：只在垂直方向重复。<br />no-repeat：不重复。</td>
+<td>repeat：重复，铺满整个元素，默认值。<br>repeat-x：只在水平方向重复。<br>repeat-y：只在垂直方向重复。<br>no-repeat：不重复。</td>
 </tr>
 <tr>
 <td align="center">background-position</td>
 <td align="center">设置背景图位置</td>
-<td>**通过关键字设置位置：<br />**写两个值，用空格隔开<br />水平：left、center、right<br />垂直：top、center、bottom<br />如果只写一个值，另一个方向的值取center<br /><br /><strong>通过长度指定坐标位置：</strong><br />以元素左上角，为坐标原点，设置图片左上角的位置。<br />两个值，分别是x坐标和y坐标。<br />只写一个值，会被当做x坐标，y坐标取center</td>
+<td>**通过关键字设置位置：<br>**写两个值，用空格隔开<br>水平：left、center、right<br>垂直：top、center、bottom<br>如果只写一个值，另一个方向的值取center<br><br><strong>通过长度指定坐标位置：</strong><br>以元素左上角，为坐标原点，设置图片左上角的位置。<br>两个值，分别是x坐标和y坐标。<br>只写一个值，会被当做x坐标，y坐标取center</td>
 </tr>
 <tr>
 <td align="center">background</td>
@@ -1540,7 +1825,7 @@
 <tbody><tr>
 <td align="center">cursor</td>
 <td align="center">设置鼠标光标的样式</td>
-<td>pointer：小手<br />move：移动图标<br />text：文字选择器<br />crosshair：十字架<br />wait：等待<br />help：帮助</td>
+<td>pointer：小手<br>move：移动图标<br>text：文字选择器<br>crosshair：十字架<br>wait：等待<br>help：帮助</td>
 </tr>
 </tbody></table>
 <p>扩展：自定义鼠标图标</p>
@@ -1614,7 +1899,7 @@
 <h5 id="1-5-3-3-行内块元素（inline-block）"><a href="#1-5-3-3-行内块元素（inline-block）" class="headerlink" title="1.5.3.3 行内块元素（inline-block）"></a>1.5.3.3 行内块元素（inline-block）</h5><ol>
 <li><p>图片：<code>&lt;img&gt;</code></p>
 </li>
-<li><p>单元格：<code>&lt;td&gt;</code> 、<th>&#96;</p>
+<li><p>单元格：<code>&lt;td&gt;</code> 、<th>&#96;</th></p>
 <ol start="3">
 <li>表单控件：<code>&lt;input&gt;</code> 、<code>&lt;textarea&gt;</code>、<code>&lt;select&gt;</code>、<code>&lt;button&gt;</code></li>
 </ol>
@@ -1754,17 +2039,17 @@
 </thead>
 <tbody><tr>
 <td align="left">border-style</td>
-<td align="left">边框线风格<br />复合了四个方向的边框风格</td>
-<td>none：默认值<br />solid：实线<br />dashed：虚线<br />dotted：点线<br />double：双实线<br />……</td>
+<td align="left">边框线风格<br>复合了四个方向的边框风格</td>
+<td>none：默认值<br>solid：实线<br>dashed：虚线<br>dotted：点线<br>double：双实线<br>……</td>
 </tr>
 <tr>
 <td align="left">border-width</td>
-<td align="left">边框线宽度<br />复合了四个方向的边框宽度</td>
+<td align="left">边框线宽度<br>复合了四个方向的边框宽度</td>
 <td>长度，默认 3px</td>
 </tr>
 <tr>
 <td align="left">border-color</td>
-<td align="left">边框线颜色<br />复合了四个方向的边框颜色</td>
+<td align="left">边框线颜色<br>复合了四个方向的边框颜色</td>
 <td>颜色，默认黑色</td>
 </tr>
 <tr>
@@ -1773,7 +2058,7 @@
 <td>值没有顺序和数量要求。</td>
 </tr>
 <tr>
-<td align="left">border-left<br />border-left-style<br />border-left-width<br />border-left-color<br /><br />border-right<br />border-right-style<br />border-right-width<br />border-right-color<br /><br />border-top<br />border-top-style<br />border-top-width<br />border-top-color<br /><br />border-bottom<br />border-bottom-style <br />border-bottom-width<br />border-bottom-color</td>
+<td align="left">border-left<br>border-left-style<br>border-left-width<br>border-left-color<br><br>border-right<br>border-right-style<br>border-right-width<br>border-right-color<br><br>border-top<br>border-top-style<br>border-top-width<br>border-top-color<br><br>border-bottom<br>border-bottom-style <br>border-bottom-width<br>border-bottom-color</td>
 <td align="left">分别设置各个方向的边框</td>
 <td>同上</td>
 </tr>
@@ -1845,7 +2130,7 @@
 <tbody><tr>
 <td>overflow</td>
 <td>溢出内容的处理方式</td>
-<td>visible：显示，默认值<br />hidden：隐藏<br />scroll：显示滚动条，不论内容是否溢出<br />auto：自动显示滚动条，内容不溢出不显示</td>
+<td>visible：显示，默认值<br>hidden：隐藏<br>scroll：显示滚动条，不论内容是否溢出<br>auto：自动显示滚动条，内容不溢出不显示</td>
 </tr>
 <tr>
 <td>overflow-x</td>
@@ -2289,19 +2574,19 @@
 </thead>
 <tbody><tr>
 <td>border-top-left-radius</td>
-<td>设置左上角圆角半径：<br />一个值是正圆半径，<br />两个值分别是椭圆的 x 半径、 y 半径。</td>
+<td>设置左上角圆角半径：<br>一个值是正圆半径，<br>两个值分别是椭圆的 x 半径、 y 半径。</td>
 </tr>
 <tr>
 <td>border-top-right-radius</td>
-<td>设置右上角圆角半径：<br />一个值是正圆半径，<br />两个值分别是椭圆的 x 半径、 y 半径。</td>
+<td>设置右上角圆角半径：<br>一个值是正圆半径，<br>两个值分别是椭圆的 x 半径、 y 半径。</td>
 </tr>
 <tr>
 <td>border-bottom-right-radius</td>
-<td>设置右下角圆角半径：<br />一个值是正圆半径，<br />两个值分别是椭圆的 x 半径、 y 半径。</td>
+<td>设置右下角圆角半径：<br>一个值是正圆半径，<br>两个值分别是椭圆的 x 半径、 y 半径。</td>
 </tr>
 <tr>
 <td>border-bottom-left-radius</td>
-<td>设置左下角圆角半径：<br />一个值是正圆半径，<br />两个值分别是椭圆的 x 半径、 y 半径。</td>
+<td>设置左下角圆角半径：<br>一个值是正圆半径，<br>两个值分别是椭圆的 x 半径、 y 半径。</td>
 </tr>
 </tbody></table>
 <h5 id="2-2-6-2-边框外轮廓（了解）"><a href="#2-2-6-2-边框外轮廓（了解）" class="headerlink" title="2.2.6.2 边框外轮廓（了解）"></a>2.2.6.2 边框外轮廓（了解）</h5><ul>
@@ -2683,7 +2968,7 @@
 </tr>
 <tr>
 <td>rotate3d</td>
-<td>前 3 个参数分别表示坐标轴： x , y , z ，第 4 个参数表示旋转的角度，参数不允许省略。<br /> 例如： transform: rotate3d(1,1,1,30deg) ，意思是： x 、 y 、 z 分别旋转 30 度。</td>
+<td>前 3 个参数分别表示坐标轴： x , y , z ，第 4 个参数表示旋转的角度，参数不允许省略。<br> 例如： transform: rotate3d(1,1,1,30deg) ，意思是： x 、 y 、 z 分别旋转 30 度。</td>
 </tr>
 </tbody></table>
 <h5 id="2-2-11-6-3D-缩放"><a href="#2-2-11-6-3D-缩放" class="headerlink" title="2.2.11.6 3D 缩放"></a>2.2.11.6 3D 缩放</h5><p>3D 缩放是在 2D 缩放的基础上，可以让元素沿 z 轴缩放，具体使用方式如下：</p>
@@ -3042,7 +3327,7 @@
 </tr>
 <tr>
 <td>orientation</td>
-<td>检测视口的旋转方向（是否横屏）。<br />1. portrait ：视口处于纵向，即高度大于等于宽度。<br />2. landscape ：视口处于横向，即宽度大于高度。</td>
+<td>检测视口的旋转方向（是否横屏）。<br>1. portrait ：视口处于纵向，即高度大于等于宽度。<br>2. landscape ：视口处于横向，即宽度大于高度。</td>
 </tr>
 </tbody></table>
 <p>完整列表请参考： <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/@media">https://developer.mozilla.org/zh-CN/docs/Web/CSS/@media</a></p>
@@ -3394,7 +3679,7 @@
 <tbody><tr>
 <td align="center">img</td>
 <td align="center">图片</td>
-<td><strong>src</strong>：图片路径（又称：图片地址）—— 图片的具体位置<br /><strong>alt</strong>：图片描述<br /><strong>width</strong>：图片宽度<br /><strong>height</strong>：图片高度</td>
+<td><strong>src</strong>：图片路径（又称：图片地址）—— 图片的具体位置<br><strong>alt</strong>：图片描述<br><strong>width</strong>：图片宽度<br><strong>height</strong>：图片高度</td>
 <td align="center">单</td>
 </tr>
 </tbody></table>
@@ -3414,7 +3699,7 @@
 <tbody><tr>
 <td align="center">a</td>
 <td align="center">超链接</td>
-<td><strong>href</strong>：指定要跳转到的具体目标。<br /><strong>target</strong>：控制跳转时如何打开页面，常用值如下:<br />     <strong>_self</strong>：在本窗口打开。<br />     <strong>_blank</strong>：在新窗口打开。<br /><strong>id</strong>：元素的唯一标识，可用于设置锚点。<br /><strong>name</strong>：元素的名字，写在 <code>a</code> 标签中，也能设置锚点。</td>
+<td><strong>href</strong>：指定要跳转到的具体目标。<br><strong>target</strong>：控制跳转时如何打开页面，常用值如下:<br>     <strong>_self</strong>：在本窗口打开。<br>     <strong>_blank</strong>：在新窗口打开。<br><strong>id</strong>：元素的唯一标识，可用于设置锚点。<br><strong>name</strong>：元素的名字，写在 <code>a</code> 标签中，也能设置锚点。</td>
 <td align="center">双</td>
 </tr>
 </tbody></table>
@@ -3467,13 +3752,13 @@
 <tbody><tr>
 <td align="center">table</td>
 <td align="center">表格</td>
-<td><strong>width</strong>：设置表格宽度。<br /><strong>height</strong>：设置表格最小高度，表格最终高度可能比设置的值大。<br /><strong>border</strong>：设置表格边框宽度。<br /><strong>cellspacing</strong>：设置单元格之间的间距。</td>
+<td><strong>width</strong>：设置表格宽度。<br><strong>height</strong>：设置表格最小高度，表格最终高度可能比设置的值大。<br><strong>border</strong>：设置表格边框宽度。<br><strong>cellspacing</strong>：设置单元格之间的间距。</td>
 <td align="center">双</td>
 </tr>
 <tr>
 <td align="center">thead</td>
 <td align="center">表格头部</td>
-<td><strong>height</strong>：设置表格头部高度。<br /><strong>align</strong>：设置单元格的水平对齐方式，可选值如下：<br />     <strong>1.left</strong>：左对齐<br />     <strong>2.center</strong>：中间对齐<br />     <strong>3.righ</strong>t：右对齐<br /><strong>valign</strong>：设置单元格的垂直对齐方式，可选值如下：<br />     <strong>1.top</strong>：顶部对齐<br />     <strong>2.middle</strong>：中间对齐<br />     <strong>3.bottom：底部对齐</strong></td>
+<td><strong>height</strong>：设置表格头部高度。<br><strong>align</strong>：设置单元格的水平对齐方式，可选值如下：<br>     <strong>1.left</strong>：左对齐<br>     <strong>2.center</strong>：中间对齐<br>     <strong>3.righ</strong>t：右对齐<br><strong>valign</strong>：设置单元格的垂直对齐方式，可选值如下：<br>     <strong>1.top</strong>：顶部对齐<br>     <strong>2.middle</strong>：中间对齐<br>     <strong>3.bottom：底部对齐</strong></td>
 <td align="center">双</td>
 </tr>
 <tr>
@@ -3497,7 +3782,7 @@
 <tr>
 <td align="center">td</td>
 <td align="center">普通单元格</td>
-<td><strong>width</strong>：设置单元格的宽度，同列所有单元格全都受影响。<br /><strong>heigth</strong>：设置单元格的高度，同行所有单元格全都受影响。<br /><strong>align</strong>：设置单元格的水平对齐方式。<br /><strong>valign</strong>：设置单元格的垂直对齐方式。<br /><strong>rowspan</strong>：指定要跨的行数。<br /><strong>colspan</strong>：指定要跨的列数。</td>
+<td><strong>width</strong>：设置单元格的宽度，同列所有单元格全都受影响。<br><strong>heigth</strong>：设置单元格的高度，同行所有单元格全都受影响。<br><strong>align</strong>：设置单元格的水平对齐方式。<br><strong>valign</strong>：设置单元格的垂直对齐方式。<br><strong>rowspan</strong>：指定要跨的行数。<br><strong>colspan</strong>：指定要跨的列数。</td>
 <td align="center">双</td>
 </tr>
 <tr>
@@ -3543,19 +3828,19 @@
 <tbody><tr>
 <td align="center">form</td>
 <td align="center">表单</td>
-<td><strong>action</strong>：表单要提交的地址。<br /><strong>target</strong>：要跳转的新地址打开位置；值：<code>_self</code> 、<code> _blank</code>。<br /><strong>method</strong>：请求方式，值： <code>get</code> 、<code>post</code>。</td>
+<td><strong>action</strong>：表单要提交的地址。<br><strong>target</strong>：要跳转的新地址打开位置；值：<code>_self</code> 、<code> _blank</code>。<br><strong>method</strong>：请求方式，值： <code>get</code> 、<code>post</code>。</td>
 <td align="center">双</td>
 </tr>
 <tr>
 <td align="center">input</td>
 <td align="center">多种形式的表单控件</td>
-<td><strong>type</strong>：指定表单控件的类型，常用值如下：<br />    <strong>1.text</strong>：普通文本。<br />    <strong>2.password</strong>：密码。<br />    <strong>3.radio</strong>：单选框。<br />    <strong>4.checkbox</strong>：复选框。<br />    <strong>5.hidden</strong>：隐藏域。<br />    <strong>6.submit</strong>：提交按钮。<br />    <strong>7.reset</strong>：重置按钮。<br />    <strong>8.button</strong>：普通按钮。<br /><strong>checked</strong>： 用于单选按钮和复选框，默认选中。</td>
+<td><strong>type</strong>：指定表单控件的类型，常用值如下：<br>    <strong>1.text</strong>：普通文本。<br>    <strong>2.password</strong>：密码。<br>    <strong>3.radio</strong>：单选框。<br>    <strong>4.checkbox</strong>：复选框。<br>    <strong>5.hidden</strong>：隐藏域。<br>    <strong>6.submit</strong>：提交按钮。<br>    <strong>7.reset</strong>：重置按钮。<br>    <strong>8.button</strong>：普通按钮。<br><strong>checked</strong>： 用于单选按钮和复选框，默认选中。</td>
 <td align="center">单</td>
 </tr>
 <tr>
 <td align="center">textarea</td>
 <td align="center">文本域</td>
-<td><strong>rows</strong>：指定默认显示的行数，会影响文本域的高度。<br /><strong>cols</strong>：指定默认显示的列数，会影响文本域的宽度。</td>
+<td><strong>rows</strong>：指定默认显示的行数，会影响文本域的高度。<br><strong>cols</strong>：指定默认显示的列数，会影响文本域的宽度。</td>
 <td align="center">双</td>
 </tr>
 <tr>
@@ -3567,7 +3852,7 @@
 <tr>
 <td align="center">option</td>
 <td align="center">下拉框的选项</td>
-<td><strong>value</strong>： 该选项事件提交的数据 （不指定value，会把标签中的内容作为提交数据）<br /> <strong>selected</strong>： 默认选中。</td>
+<td><strong>value</strong>： 该选项事件提交的数据 （不指定value，会把标签中的内容作为提交数据）<br> <strong>selected</strong>： 默认选中。</td>
 <td align="center">双</td>
 </tr>
 <tr>
@@ -3994,11 +4279,11 @@
 </tr>
 <tr>
 <td>autocomplete</td>
-<td>自动完成，可以设置为 on 或 off ，适用于文字输入类的表单控件。<br />注意：密码输入框、多行输入框不可用。</td>
+<td>自动完成，可以设置为 on 或 off ，适用于文字输入类的表单控件。<br>注意：密码输入框、多行输入框不可用。</td>
 </tr>
 <tr>
 <td>pattern</td>
-<td>填写正则表达式，适用于文本输入类表单控件。<br />注意：多行输入不可用，且空的输入框不会验证，往往与 required 配合。</td>
+<td>填写正则表达式，适用于文本输入类表单控件。<br>注意：多行输入不可用，且空的输入框不会验证，往往与 required 配合。</td>
 </tr>
 </tbody></table>
 <h4 id="3-3-2-input-新增属性值"><a href="#3-3-2-input-新增属性值" class="headerlink" title="3.3.2 input 新增属性值"></a>3.3.2 input 新增属性值</h4><table>
@@ -4121,7 +4406,7 @@
 <tr>
 <td>preload</td>
 <td>auto &#x2F; metadata &#x2F; none</td>
-<td>视频预加载，如果使用 autoplay ，则忽略该属性。<br />none：不预加载视频。<br />metadata：仅预先获取视频的元数据（例如长度）。<br />auto：可以下载整个视频文件，即使用户不希望使用它。</td>
+<td>视频预加载，如果使用 autoplay ，则忽略该属性。<br>none：不预加载视频。<br>metadata：仅预先获取视频的元数据（例如长度）。<br>auto：可以下载整个视频文件，即使用户不希望使用它。</td>
 </tr>
 </tbody></table>
 <h4 id="3-4-2-音频标签"><a href="#3-4-2-音频标签" class="headerlink" title="3.4.2 音频标签"></a>3.4.2 音频标签</h4><p><code>&lt;audio&gt;</code> 标签用来定义音频，它是双标签。</p>
@@ -4161,7 +4446,7 @@
 <tr>
 <td>preload</td>
 <td>auto &#x2F; metadata &#x2F; none</td>
-<td>音频预加载，如果使用 autoplay ，则忽略该属性。<br />none：不预加载音频。<br />metadata：仅预先获取音频的元数据（例如长度）。<br />auto：可以下载整个音频文件，即使用户不希望使用它。</td>
+<td>音频预加载，如果使用 autoplay ，则忽略该属性。<br>none：不预加载音频。<br>metadata：仅预先获取音频的元数据（例如长度）。<br>auto：可以下载整个音频文件，即使用户不希望使用它。</td>
 </tr>
 </tbody></table>
 <h3 id="3-5-新增全局属性（了解）"><a href="#3-5-新增全局属性（了解）" class="headerlink" title="3.5 新增全局属性（了解）"></a>3.5 新增全局属性（了解）</h3><table>
@@ -4173,11 +4458,11 @@
 </thead>
 <tbody><tr>
 <td>contenteditable</td>
-<td>表示元素是否可被用户编辑，可选值如下：<br />true：可编辑<br />false：不可编辑</td>
+<td>表示元素是否可被用户编辑，可选值如下：<br>true：可编辑<br>false：不可编辑</td>
 </tr>
 <tr>
 <td>draggable</td>
-<td>表示元素可以被拖动，可选值如下：<br />true：可拖动<br />false：不可拖动</td>
+<td>表示元素可以被拖动，可选值如下：<br>true：可拖动<br>false：不可拖动</td>
 </tr>
 <tr>
 <td>hidden</td>
@@ -4185,7 +4470,7 @@
 </tr>
 <tr>
 <td>spellcheck</td>
-<td>规定是否对元素进行拼写和语法检查，可选值如下：<br />true：检查<br />false：不检查</td>
+<td>规定是否对元素进行拼写和语法检查，可选值如下：<br>true：检查<br>false：不检查</td>
 </tr>
 <tr>
 <td>contextmenu</td>
